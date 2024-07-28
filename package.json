@@ -1,7 +1,6 @@
 {
   "name": "craft_library",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +12,14 @@
     "express": "^4.19.2",
     "express-handlebars": "^7.1.3",
     "forever": "^1.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NBooseCodes/Craft_Library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NBooseCodes/Craft_Library/issues"
+  },
+  "homepage": "https://github.com/NBooseCodes/Craft_Library#readme",
+  "description": ""
 }

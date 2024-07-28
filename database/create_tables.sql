@@ -25,7 +25,7 @@ CREATE OR REPLACE TABLE `Yarn` (
     `yarnID` int(11) AUTO_INCREMENT,
 	`yarnBrand` varchar(255) NOT NULL,
     `yarnFiber` varchar(255),
-    `yarnWeight` int(11) NOT NULL,
+    `yarnWeight` varchar(255) NOT NULL,
     `yarnColorFamily` varchar(255) NOT NULL,
     `yarnColorName` varchar(255),
     `inventory` int(11),
@@ -35,8 +35,8 @@ CREATE OR REPLACE TABLE `Yarn` (
 INSERT INTO `UserInfo` (`firstName`, `lastName`, `username`, `password`)
 VALUES ('Nicole', 'McCune', 'NMccune', 'password'), ('Jane', 'Doe', 'JDoe78', 'abc123');
 
-INSERT INTO `Yarn` (`yarnBrand`, `yarnWeight`, `yarnFiber`, `yarnWeight`, `yarnColor`, `inventory`)
-VALUES ('Lion Brand', 'Wool', 'Worsted', 'Red', 'Cranberry'), 
-('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Yellow', 'Bright Yellow'),
-('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Purple', 'Medium Purple'),
-("Aunt Lydia's", 'Cotton', 'Lace', 'Orange', 'Pumpkin');
+INSERT INTO `Yarn` (`yarnBrand`, `yarnFiber`, `yarnWeight`, `yarnColorFamily`, `yarnColorName`, `inventory`)
+VALUES ('Lion Brand', 'Wool', 'Worsted', 'Red', 'Cranberry', 4), 
+('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Yellow', 'Bright Yellow', 5),
+('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Purple', 'Medium Purple', 7),
+("Aunt Lydia's", 'Cotton', 'Lace', 'Orange', 'Pumpkin', 2);
