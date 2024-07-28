@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js"
   },
   "author": "",
@@ -21,5 +20,8 @@
     "url": "https://github.com/NBooseCodes/Craft_Library/issues"
   },
   "homepage": "https://github.com/NBooseCodes/Craft_Library#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
