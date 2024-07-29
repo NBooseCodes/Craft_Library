@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+<h1>Add Yarn Info to Add to Inventory</h1>
+<body>
+    <form id="addYarn" method="POST" action="/add-yarn">
+        <p>
+            <input type="text" name="yarnBrand" id="yarnBrand" placeholder="Yarn Brand" required><br><br>
+            <input type="text" name="yarnFiber" id="yarnFiber" placeholder="Fiber" required><br><br>
+            <input type="text" name="yarnWeight" id="yarnWeight" placeholder="Yarn Weight" required><br><br>
+            <input type="text" name="yarnColorFamily" id="yarnColorFamily" placeholder="Color Family" required><br><br>
+            <input type="submit" value="Add Yarn" class="button">
+        </p>
+    </form>
+    
+    <form id="logout" name="logout" method="GET" action="/">
+        <input type="submit" value="Cancel" class="button">
+    </form>
+    <img src="/img/knitting.png" class="knitting">
+</body>

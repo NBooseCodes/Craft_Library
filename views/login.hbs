@@ -1,23 +1,26 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
 <head>
+    <h1>Welcome to Craft Manager!</h1>
+    <p>Your one-stop shop to keep track of your craft supplies!</p>
+    <img src="/img/needle.png" class="sewing">
 </head>
-
-<h1>This is the Log In page</h1>
-<h2>Enter your Info to log in</h2>
-
 <body>
+    <h2>Log In to see your craft library</h2>
     <form id="check-login-form" method="POST" action="/check-login-form">
         <p>
             <input type="text" name="username" id="username" placeholder="Username" required><br><br>
             <input type="password" name="password" id="password" placeholder="Password" required><br><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" class="button">
         </p>
     </form>
-
+    <br>
+    <br>
+    <h3>Don't have an account? Click below to register.</h3>
     <form id="register-form" method="POST" action="/register">
         <p>
-            <input type="submit" value="Register">
+            <input type="submit" value="Register" class="button">
         </p>
     </form>
-    <img src="/img/knitting.png" class="knitting">
 </body>
+<img src="/img/knitting.png" class="knitting">

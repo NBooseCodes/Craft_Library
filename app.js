@@ -48,17 +48,15 @@ app.get('/home', function(req, res){
     res.render('home');
 })
 
+// Route to get to register page
 app.post('/register', function(req, res) {
     res.render('register');
 })
 
+// Route to add a user's info to our DB
 app.post('/register-user', function(req, res) {
     console.log("hit reg user");
     let data = req.body;
-    let firstName = data.firstName;
-    let lastName = data.lastName;
-    let username = data.username;
-    let password = data.password;
 
     // Now add user to db
 
@@ -67,7 +65,14 @@ app.post('/register-user', function(req, res) {
         res.redirect('home');
     })
 })
-// Listender
+
+app.get('/add-yarn-button', function(req, res) {
+    res.redirect('add-yarn')
+})
+app.get('/add-yarn', function(req, res) {
+    res.render('addYarn');
+})
+// Listener
 app.listen(PORT, function(){
     console.log('Express started on port ' + PORT);
 })

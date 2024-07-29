@@ -14,9 +14,30 @@ input {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
-.knitting {
-    padding-top: 10%;
-    padding-right: 70%;
-    width: 250px;
+.button {
+    border-radius: 15px;
+    width: 320px;
+    border-width: 1px;
 }
 
+.knitting {
+    padding-bottom: 100px;
+    padding-right: 70%;
+    width: 350px;
+}
+
+.sewing {
+    padding-left: 70%;
+    width: 300px;
+}
+
+.logoutButton {
+    text-align: center;
+    width: 150px; 
+    border-radius: 15px;
+}
+
+.logoutButtonForm {
+    padding-right: 88%;
+    padding-bottom: 5%;
+}

@@ -1,11 +1,18 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
-<h1>This is the home page</h1>
+<form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
+    <input type="submit" value="Log Out" class="logoutButton">
+</form>
 
+<h1>Craft Library Home</h1>
+<h2>Welcome to your Craft Library</h2>
+
+<p>To add a yarn, click the <b>Add Yarn</b> button.</p>
+<p>To view your yarn inventory, click the <b>View Yarn Inventory</b> button</p>
+<form id="addYarnButton" name="addYarn" method="GET" action="/add-yarn-button">
+    <input type="submit" value="Add Yarn" class="button">
+</form>
 
 <body>
-    <form id="logout" name="logout" method="GET" action="/">
-        <input type="submit" value="Log Out">
-    </form>
     <img src="/img/knitting.png" class="knitting">
 </body>
