@@ -66,11 +66,50 @@ app.post('/register-user', function(req, res) {
     })
 })
 
+// Renders add-yarn page so we can enter our information in our db
 app.get('/add-yarn-button', function(req, res) {
-    res.redirect('add-yarn')
+    res.render('addYarn')
 })
-app.get('/add-yarn', function(req, res) {
-    res.render('addYarn');
+
+// Actually adds yarn info to our db
+app.post('/add-yarn', function(req, res) {
+    let data = req.body;
+    let queryVarArr = [data.yarnBrand, data.yarnFiber, data.yarnWeight, data.yarnColorFamily];
+
+    let addYarnQuery = `INSERT INTO Yarn (yarnBrand, yarnFiber, yarnWeight, yarnColorFamily,  `
+    let valuesString = `(?, ?, ?, ?, `
+    if (data.yarnColorName) {
+        addYarnQuery += `yarnColorName, `
+        valuesString += `?, `;
+        queryVarArr.push(data.yarnColorName);
+    }
+    addYarnQuery += `inventory)`;
+    valuesString += `?)`;
+    queryVarArr.push(parseInt(data.inventory))
+    let finalQuery = addYarnQuery + ` VALUES ` + valuesString;
+
+    db.pool.query(finalQuery, queryVarArr, function(err) {
+        if (err) {
+            console.log(err)
+            res.sendStatus(400)
+        } else {
+            console.log("Successfully added yarn");
+            res.redirect('yarn-inventory');
+        }
+    })
+
+})
+
+app.get('/view-yarn-inventory', function(req, res) {
+    let inventoryQuery = `SELECT yarnBrand, yarnColorFamily FROM Yarn`;
+    db.pool.query(inventoryQuery, function(error, rows) {
+        let yarn = rows;
+        return res.render('yarnInventory', {data: yarn});
+    })
+})
+
+app.get('/yarnInfo', function(req, res) {
+    res.render('yarnInfo')
 })
 // Listener
 app.listen(PORT, function(){

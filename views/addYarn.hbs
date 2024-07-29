@@ -1,4 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+<form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
+    <input type="submit" value="Log Out" class="logoutButton">
+</form>
 
 <h1>Add Yarn Info to Add to Inventory</h1>
 <body>
@@ -8,12 +11,18 @@
             <input type="text" name="yarnFiber" id="yarnFiber" placeholder="Fiber" required><br><br>
             <input type="text" name="yarnWeight" id="yarnWeight" placeholder="Yarn Weight" required><br><br>
             <input type="text" name="yarnColorFamily" id="yarnColorFamily" placeholder="Color Family" required><br><br>
+            <input type="text" name="yarnColorName" id="yarnColorName" placeholder="Yarn Color Name (Optional)"><br><br>
+            <input type="number" name="inventory" id="inventory" placeholder="Inventory" required><br><br>
             <input type="submit" value="Add Yarn" class="button">
         </p>
     </form>
     
     <form id="logout" name="logout" method="GET" action="/">
         <input type="submit" value="Cancel" class="button">
+        <p>
+            <strong>Warning!</strong><br> 
+            Hitting "Cancel" with <strong>delete</strong> all the data you have entered so far!
+        </p>
     </form>
     <img src="/img/knitting.png" class="knitting">
 </body>
