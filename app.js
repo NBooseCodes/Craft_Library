@@ -2,7 +2,7 @@
 
 var express = require('express');
 var app = express();
-PORT = 21210
+PORT = 21211
 var db = require('./database/db-connection')
 
 // Plug in to Handlebars
@@ -31,12 +31,15 @@ app.post('/check-login-form', function(req, res) {
     let password = req.body.password;
     console.log(username);
     console.log(password);
-    let check_user = `SELECT COUNT(*) FROM UserInfo WHERE username = ? AND password = ?` 
+    let check_user = `SELECT COUNT(*) FROM UserInfo WHERE username = ? AND password = ?`; 
 
-    db.pool.query(check_user, [username], [password], function(err, result){
+    db.pool.query(check_user, [username, password], function(err, result) {
         console.log(result)
-        res.redirect('home')
-
+        if (result[0]['COUNT(*)'] == 1) {
+            res.redirect('home');
+        } else {
+            res.render('login');
+        }
     })
 })
 
@@ -45,6 +48,25 @@ app.get('/home', function(req, res){
     res.render('home');
 })
 
+app.post('/register', function(req, res) {
+    res.render('register');
+})
+
+app.post('/register-user', function(req, res) {
+    console.log("hit reg user");
+    let data = req.body;
+    let firstName = data.firstName;
+    let lastName = data.lastName;
+    let username = data.username;
+    let password = data.password;
+
+    // Now add user to db
+
+    let addUserQuery = `INSERT INTO UserInfo (firstName, lastName, username, password) VALUES (?, ?, ?, ?)`;
+    db.pool.query(addUserQuery, [data.firstName, data.lastName, data.username, data.password], function(err) {
+        res.redirect('home');
+    })
+})
 // Listender
 app.listen(PORT, function(){
     console.log('Express started on port ' + PORT);

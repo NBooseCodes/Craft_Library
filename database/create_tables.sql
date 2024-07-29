@@ -40,3 +40,6 @@ VALUES ('Lion Brand', 'Wool', 'Worsted', 'Red', 'Cranberry', 4),
 ('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Yellow', 'Bright Yellow', 5),
 ('Red Heart Super Saver', 'Acrylic', 'Worsted', 'Purple', 'Medium Purple', 7),
 ("Aunt Lydia's", 'Cotton', 'Lace', 'Orange', 'Pumpkin', 2);
+
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
