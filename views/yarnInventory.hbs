@@ -3,14 +3,12 @@
 <form id="homeButton" name="homeButton" class="homeButtonForm" method="GET" action="/home">
         <input type="submit" value="Home" class="logoutButton">
 </form>
-
 <form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
     <input type="submit" value="Log Out" class="logoutButton">
 </form>
 
-
-
     <h1>Welcome to your yarn inventory</h1>
+
     <form id="sortYarnForm" name="sortYarnForm" method="POST" action="/view-yarn-inventory">
         <select id="sortYarn" name="sortYarn" class="sortSelect" onchange="this.form.submit()">
             <option>Sort By</option>
@@ -20,8 +18,7 @@
             <option value="yarnWeight">Yarn Weight</option>
         </select>
     </form>
-
-    <table id="yarn-inventory-table" border="1" cellpadding="5">
+    <table id="yarn-inventory-table" border="3" cellpadding="5">
 
         {{!-- Header section --}}
         <thead>
@@ -47,8 +44,8 @@
                     <td>{{this.yarnBrand}}</td>
                     <td>{{this.yarnWeight}}</td>
                     <td>{{this.yarnColorFamily}}</td>
-                    <td><input type="submit" value="More Info"></td>
-                    <td><button onclick="deleteYarn({{this.yarnID}})">Delete</button></td>
+                    <td><input type="submit" value="More Info" class="more-info-button"></td>
+                    <td><button class="delete-button" onclick="deleteYarn({{this.yarnID}})">Delete</button></td>
 
                 </tr>
                 </form>
@@ -58,3 +55,4 @@
 
     </table>
 <script src="js/delete_yarn.js"></script>
+

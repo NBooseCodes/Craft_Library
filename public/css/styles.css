@@ -18,7 +18,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30%;
-    
+    border: 2;
 }
 
 select {
@@ -35,8 +35,15 @@ select {
     border-width: 1px;
 }
 
+.delete-button {
+    width:100px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    text-align: center;
+}
+
 .knitting {
-    padding-bottom: 100px;
+    padding-bottom: 500;
     padding-right: 70%;
     width: 350px;
 }
@@ -59,10 +66,17 @@ select {
 
 .homeButtonForm {
     padding-right: 88%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
 }
 
 .sortSelect {
     margin-bottom: 50px;
-    margin-right: 700px;
+    margin-right: 800px;
+}
+
+.more-info-button {
+    width: 200px;
+    font-size: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
