@@ -1,7 +1,13 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+<form id="homeButton" name="homeButton" class="homeButtonForm" method="GET" action="/home">
+        <input type="submit" value="Home" class="logoutButton">
+</form>
+
 <form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
     <input type="submit" value="Log Out" class="logoutButton">
 </form>
+
 
 
     <h1>Welcome to your yarn inventory</h1>
@@ -30,7 +36,7 @@
                     <input type="hidden" name="yarnID" value={{this.yarnID}}>
                     <td>{{this.yarnBrand}}</td>
                     <td>{{this.yarnColorFamily}}</td>
-                    <td><input type="submit" value="More Info"></td>
+                    <td><input type="submit" value="More Info" class="button"></td>
 
                 </tr>
                 </form>
@@ -40,6 +46,3 @@
 
     </table>
 
-<form id="homeButton" name="homeButton" method="GET" action="/home">
-        <input type="submit" value="Home" class="button">
-</form>
