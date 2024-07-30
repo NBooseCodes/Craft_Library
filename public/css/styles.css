@@ -17,7 +17,17 @@ input {
 table {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 30%;
     
+}
+
+select {
+    width: 300px;
+    text-align: center;
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: normal;
+    color: #747474;
 }
 .button {
     border-radius: 15px;
@@ -50,4 +60,9 @@ table {
 .homeButtonForm {
     padding-right: 88%;
     padding-bottom: 5%;
+}
+
+.sortSelect {
+    margin-bottom: 50px;
+    margin-right: 700px;
 }

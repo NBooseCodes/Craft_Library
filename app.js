@@ -94,14 +94,14 @@ app.post('/add-yarn', function(req, res) {
             res.sendStatus(400)
         } else {
             console.log("Successfully added yarn");
-            res.redirect('yarn-inventory');
+            res.redirect('view-yarn-inventory');
         }
     })
 
 })
 
 app.get('/view-yarn-inventory', function(req, res) {
-    let inventoryQuery = `SELECT yarnID, yarnBrand, yarnColorFamily FROM Yarn`;
+    let inventoryQuery = `SELECT yarnID, yarnBrand, yarnWeight, yarnColorFamily FROM Yarn`;
     db.pool.query(inventoryQuery, function(error, rows) {
         let yarn = rows;
         return res.render('yarnInventory', {data: yarn});
@@ -120,6 +120,19 @@ app.get('/yarnInfo', function(req, res) {
     })
 })
 
+app.delete('/delete-yarn/:yarnID', function(req,res,next){
+    // Deletes yarn based on ID sent over from table
+    let deleteYarnQuery = `DELETE FROM Yarn WHERE yarnID = ?`;
+          db.pool.query(deleteYarnQuery, [req.params.yarnID], function(error){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else {
+                res.sendStatus(204);
+            }
+    })
+});
 // Listener
 app.listen(PORT, function(){
     console.log('Express started on port ' + PORT);

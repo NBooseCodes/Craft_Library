@@ -11,7 +11,12 @@
 
 
     <h1>Welcome to your yarn inventory</h1>
-
+    <select id="sortYarn" name="sortYarn" class="sortSelect">
+        <option>Sort By</option>
+        <option value="brandAZ">Brand (A-Z)</option>
+        <option value="brandZA">Brand (Z-A)</option>
+        <option value="color">Color</option>
+    </select>
 
     <table id="yarn-inventory-table" border="1" cellpadding="5">
 
@@ -22,8 +27,10 @@
             know what each column means when the page renders --}}
             <tr>
                 <th>Brand Name</th>
+                <th>Yarn Weight</th>
                 <th>Color Family</th>
                 <th>More info</th>
+                <th>Delete</th>
             </tr>
         </thead>
         
@@ -35,8 +42,10 @@
                     <form id="yarnIDVal" method="GET" action="/yarnInfo">
                     <input type="hidden" name="yarnID" value={{this.yarnID}}>
                     <td>{{this.yarnBrand}}</td>
+                    <td>{{this.yarnWeight}}</td>
                     <td>{{this.yarnColorFamily}}</td>
-                    <td><input type="submit" value="More Info" class="button"></td>
+                    <td><input type="submit" value="More Info"></td>
+                    <td><button onclick="deleteYarn({{this.yarnID}})">Delete</button></td>
 
                 </tr>
                 </form>
@@ -45,4 +54,4 @@
         </tbody>
 
     </table>
-
+<script src="js/delete_yarn.js"></script>
