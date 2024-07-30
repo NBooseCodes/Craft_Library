@@ -101,7 +101,7 @@ app.post('/add-yarn', function(req, res) {
 })
 
 app.get('/view-yarn-inventory', function(req, res) {
-    let inventoryQuery = `SELECT yarnBrand, yarnColorFamily FROM Yarn`;
+    let inventoryQuery = `SELECT yarnID, yarnBrand, yarnColorFamily FROM Yarn`;
     db.pool.query(inventoryQuery, function(error, rows) {
         let yarn = rows;
         return res.render('yarnInventory', {data: yarn});
@@ -109,8 +109,16 @@ app.get('/view-yarn-inventory', function(req, res) {
 })
 
 app.get('/yarnInfo', function(req, res) {
-    res.render('yarnInfo')
+    let data = req.body;
+    let yarnID = data.yarnID;
+    console.log(yarnID)
+    let yarnInfoQuery = `SELECT * FROM Yarn`;
+    db.pool.query(yarnInfoQuery, function(error, rows) {
+        let yarnInfo = rows;
+        return res.render('yarnInfo', {yarn: yarnInfo});
+    })
 })
+
 // Listener
 app.listen(PORT, function(){
     console.log('Express started on port ' + PORT);

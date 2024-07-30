@@ -3,32 +3,43 @@
     <input type="submit" value="Log Out" class="logoutButton">
 </form>
 
-<h1>Welcome to your yarn inventory</h1>
+
+    <h1>Welcome to your yarn inventory</h1>
 
 
-<table id="alcohol-table" border="1" cellpadding="5">
+    <table id="yarn-inventory-table" border="1" cellpadding="5">
 
-    {{!-- Header section --}}
-    <thead>
+        {{!-- Header section --}}
+        <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            <th>Brand Name</th>
-            <th>Color Family</th>
-        </tr>
-    </thead>
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                <th>Brand Name</th>
+                <th>Color Family</th>
+                <th>More info</th>
+                <th></th>
+            </tr>
+        </thead>
+        
+        {{!-- Body section --}}
+        <tbody>
+            {{!-- For each row, print the id, alcohol name, type, percentage, wholesale price, volume, and inventory count in order --}}
+                {{#each data}}
+                <tr data-value={{this.yarnID}}>
+                    <form id="yarnIDVal" method="GET" action="/yarnInfo">
+                    <td><input type="hidden" name="yarnID" value={{this.yarnID}}></td>
+                    <td>{{this.yarnBrand}}</td>
+                    <td>{{this.yarnColorFamily}}</td>
+                    <td>{{this.yarnID}}</td>
+                    <td><input type="submit" value="More Info"></td>
 
-    {{!-- Body section --}}
-    <tbody>
+                </tr>
+                </form>
+                {{/each}}
 
-        {{!-- For each row, print the id, alcohol name, type, percentage, wholesale price, volume, and inventory count in order --}}
-        {{#each data}}
-        <tr data-value={{this.yarnID}}>
-            <td>{{this.yarnBrand}}</td>
-            <td>{{this.yarnColorFamily}}</td>
-            <td><button <button onclick="window.location.href='yarnInfo'">Click me</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        </tbody>
+
+    </table>
+
+    <script src="/js/view_yarn.js"></script>
