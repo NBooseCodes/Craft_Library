@@ -11,12 +11,15 @@
 
 
     <h1>Welcome to your yarn inventory</h1>
-    <select id="sortYarn" name="sortYarn" class="sortSelect">
-        <option>Sort By</option>
-        <option value="brandAZ">Brand (A-Z)</option>
-        <option value="brandZA">Brand (Z-A)</option>
-        <option value="color">Color</option>
-    </select>
+    <form id="sortYarnForm" name="sortYarnForm" method="POST" action="/view-yarn-inventory">
+        <select id="sortYarn" name="sortYarn" class="sortSelect" onchange="this.form.submit()">
+            <option>Sort By</option>
+            <option value="brandAZ">Brand (A-Z)</option>
+            <option value="brandZA">Brand (Z-A)</option>
+            <option value="color">Color</option>
+            <option value="yarnWeight">Yarn Weight</option>
+        </select>
+    </form>
 
     <table id="yarn-inventory-table" border="1" cellpadding="5">
 

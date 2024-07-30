@@ -99,9 +99,30 @@ app.post('/add-yarn', function(req, res) {
     })
 
 })
+app.post('/view-yarn-inventory', function(req, res) {
+    console.log(req.body)
+    let data = req.body;
+    let query = `SELECT yarnID, yarnBrand, yarnWeight, yarnColorFamily FROM Yarn ORDER BY `
+    if (data.sortYarn == "brandAZ") {
+        query += `yarnBrand ASC`
+    } else if (data.sortYarn == "brandZA") {
+        query += `yarnBrand DESC`;
+    } else if (data.sortYarn == "color") {
+        query += `yarnColorFamily`;
+    } else if (data.sortYarn == "yarnWeight") {
+        query += `yarnWeight`
+    }
+
+    db.pool.query(query, function(error, rows) {
+        let yarn=rows;
+        return res.render('yarnInventory', {data: yarn});
+    })
+})
+
 
 app.get('/view-yarn-inventory', function(req, res) {
     let inventoryQuery = `SELECT yarnID, yarnBrand, yarnWeight, yarnColorFamily FROM Yarn`;
+    console.log(req.params.sortYarn)
     db.pool.query(inventoryQuery, function(error, rows) {
         let yarn = rows;
         return res.render('yarnInventory', {data: yarn});
