@@ -1,3 +1,21 @@
-<h1>This is a yarn info page</h1>
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
+    <input type="submit" value="Log Out" class="logoutButton">
+</form>
 
-<h2>{{yarn.yarnID}}</h2>
+
+    <h1>Specific info about your yarn</h1>
+    <body>
+        {{#each yarn}}
+            Brand Name: {{this.yarnBrand}}<br><br>
+            Fiber Type: {{this.yarnFiber}}<br><br>
+            Yarn Weight: {{this.yarnWeight}}<br><br>
+            Color Family: {{this.yarnColorFamily}}<br><br>
+            Color Name: {{this.yarnColorName}}<br><br>
+            Inventory: {{this.inventory}}
+        {{/each}}
+    </body>
+<form id="homeButton" name="homeButton" method="GET" action="/home">
+        <input type="submit" value="Home" class="button">
+</form>
+

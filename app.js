@@ -109,12 +109,13 @@ app.get('/view-yarn-inventory', function(req, res) {
 })
 
 app.get('/yarnInfo', function(req, res) {
-    let data = req.body;
+    let data = req.query;
     let yarnID = data.yarnID;
     console.log(yarnID)
-    let yarnInfoQuery = `SELECT * FROM Yarn`;
-    db.pool.query(yarnInfoQuery, function(error, rows) {
+    let yarnInfoQuery = `SELECT * FROM Yarn WHERE yarnID = ?`;
+    db.pool.query(yarnInfoQuery, [data.yarnID], function(error, rows) {
         let yarnInfo = rows;
+        console.log(yarnInfo)
         return res.render('yarnInfo', {yarn: yarnInfo});
     })
 })
