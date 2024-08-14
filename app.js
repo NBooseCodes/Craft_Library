@@ -201,6 +201,33 @@ app.delete('/delete-yarn/:yarnID', function(req,res,next){
             }
     })
 });
+
+
+// Needle conversion section
+
+async function getNeedleConversion(startUnits, startSize) {
+    const url = "https://floating-spire-78684-2838c495a711.herokuapp.com/convertNeedle";
+    try {
+        const response = await fetch(url, {
+            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+            body: JSON.stringify({"startUnits": startUnits, "startSize": startSize}),
+            method: 'POST',
+            mode: 'cors'
+        });
+    
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`)
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        console.error(error.message);
+    }
+    
+}
+
+getNeedleConversion("UK", "9").then((data => console.log(data)))
+
 // Listener
 app.listen(PORT, function(){
     console.log('Express started on port ' + PORT);
