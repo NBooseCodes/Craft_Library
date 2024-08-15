@@ -204,29 +204,56 @@ app.delete('/delete-yarn/:yarnID', function(req,res,next){
 
 
 // Needle conversion section
-
-async function getNeedleConversion(startUnits, startSize) {
-    const url = "https://floating-spire-78684-2838c495a711.herokuapp.com/convertNeedle";
-    try {
-        const response = await fetch(url, {
-            headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: JSON.stringify({"startUnits": startUnits, "startSize": startSize}),
-            method: 'POST',
-            mode: 'cors'
-        });
-    
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`)
+app.post("/needleConversion", function(req, res){
+    async function getNeedleConversion(startUnits, startSize) {
+        const url = "https://floating-spire-78684-2838c495a711.herokuapp.com/convertNeedle";
+        try {
+            const response = await fetch(url, {
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                body: JSON.stringify({"startUnits": startUnits, "startSize": startSize}),
+                method: 'POST',
+                mode: 'cors'
+            });
+        
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`)
+            }
+            const json = await response.json();
+            return json
+        } catch (error) {
+            console.error(error.message);
         }
-        const json = await response.json();
-        return json
-    } catch (error) {
-        console.error(error.message);
+        
     }
     
-}
+    getNeedleConversion("UK", "9").then((data => console.log(data)))
+})
 
-getNeedleConversion("UK", "9").then((data => console.log(data)))
+app.post("/stitchConversion", function(req, res){
+    
+    async function getStitchConversion(stitchName, startingUnits) {
+        const url = "https://stitch-converter-ed3d4dbbb08d.herokuapp.com/convertStitch";
+        try {
+            const response = await fetch(url, {
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                body: JSON.stringify({"stitchName": stitchName, "startingUnits": startingUnits}),
+                method: 'POST',
+                mode: 'cors'
+            });
+        
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`)
+            }
+            const json = await response.json();
+            return json
+        } catch (error) {
+            console.error(error.message);
+        }
+        
+    }
+    getStitchConversion("treble", "UK").then(data => console.log(data));
+})
+
 
 // Listener
 app.listen(PORT, function(){
