@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<img src="/img/needle.png" class="sewing">
+<form id="homeButton" name="homeButton" class="homeButtonForm" method="GET" action="/home">
+        <input type="submit" value="Home" class="logoutButton">
+</form>
+
+<form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
+    <input type="submit" value="Log Out" class="logoutButton">
+</form>
+
+
+<h1>Get a color's complement or analog</h1><br><br><br><br>
+
+<h2>Enter your color name and whether you want it's analog or complement</h2>
+<form id="color-partner" name="color-partner" method="POST" action="/color-partner">
+    <body>
+        <select name="colorName" id="colorName">
+            <option value="" disabled selected hidden>Select your color</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="violet">Violet</option>
+        </select>
+
+        <select name="colorType" id="colorType">
+            <option value="" disabled selected hidden>Select your color type</option>
+            <option value="analogous">Analog</option>
+            <option value="complementary">Complement</option>
+        </select>
+        <input type="submit" value="Get Color" class="button">
+    </body>
+</form><br>
+
+<p>
+    {{color}}'s {{colorType}}(s) is/are {{output}}.
+</p>
+<br><br><br><br>

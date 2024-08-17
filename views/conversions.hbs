@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<img src="/img/needle.png" class="sewing">
+<form id="homeButton" name="homeButton" class="homeButtonForm" method="GET" action="/home">
+        <input type="submit" value="Home" class="logoutButton">
+</form>
+
+<form id="logout" name="logout" method="GET" action="/" class="logoutButtonForm">
+    <input type="submit" value="Log Out" class="logoutButton">
+</form>
+<h1>Needle and Stitch Conversion</h1><br><br><br><br>
+
+<h2>Convert your knitting needle size between US and UK</h2>
+<form id="needle-conversion" name="needle-conversion" method="POST" action="/needleConversion">
+    <body>
+        <label><b>Enter your needle size and starting units:</b></label>
+        <input type="text" name="needleSize" id="needleSize" placeholder="Needle Size">
+        <select name="startingUnits" id="startingUnits">
+            <option value="UK">UK</option>
+            <option value="US">US</option>
+        </select>
+        <input type="submit" value="Convert" class="button">
+    </body>
+</form><br>
+
+<p>
+    {{startSize}} in {{startUnits}} units converts to {{output}} in {{finalUnits}} units.
+</p>
+<br><br><br><br>
+
+<h2>Convert your stitches between US and UK names</h2>
+<form id="needle-conversion" name="needle-conversion" method="POST" action="/stitchConversion">
+    <body>
+        <label><b>Enter the stitch name and what units the pattern is in:</b></label>
+
+        <input type="text" name="stitchName" id="stitchName" placeholder="Enter stitch name:">
+
+        <select name="startingUnits" id="startingUnits">
+            <option value="UK">UK</option>
+            <option value="US">US</option>
+        </select>
+        <input type="submit" value="Convert" class="button">
+    </body>
+</form><br><br>
+<p>
+    {{stitchName}} in {{startUnits}} units converts to {{output}} in {{finalUnits}} units.
+</p>

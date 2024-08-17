@@ -12,6 +12,7 @@ app.engine('.hbs', engine({extname: ".hbs"})); // Create handlebars instance on 
 app.set('view engine', '.hbs'); // Tell express to use handlebars when it encounters a .hbs file
 const path = require('path');
 let fetch = require('node-fetch');
+const { start } = require('repl');
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -202,9 +203,13 @@ app.delete('/delete-yarn/:yarnID', function(req,res,next){
     })
 });
 
+app.get("/conversions", function(req, res){
+    res.render('conversions');
+})
 
 // Needle conversion section
 app.post("/needleConversion", function(req, res){
+
     async function getNeedleConversion(startUnits, startSize) {
         const url = "https://floating-spire-78684-2838c495a711.herokuapp.com/convertNeedle";
         try {
@@ -225,12 +230,22 @@ app.post("/needleConversion", function(req, res){
         }
         
     }
+    let data = req.body
+    let startUnits = data.startingUnits;
+    let needleSize = data.needleSize;
+    let finalUnits = "US"
+    if (startUnits === "US") {
+        finalUnits = "UK"
+    }
+    getNeedleConversion(startUnits, needleSize).then(data => res.render('conversions', {output: data, startSize: needleSize, startUnits: startUnits, finalUnits: finalUnits}))
     
-    getNeedleConversion("UK", "9").then((data => console.log(data)))
 })
 
 app.post("/stitchConversion", function(req, res){
-    
+    let data = req.body;
+    let stitchName = data.stitchName;
+    let startUnits = data.startingUnits
+
     async function getStitchConversion(stitchName, startingUnits) {
         const url = "https://stitch-converter-ed3d4dbbb08d.herokuapp.com/convertStitch";
         try {
@@ -251,30 +266,57 @@ app.post("/stitchConversion", function(req, res){
         }
         
     }
-    getStitchConversion("treble", "UK").then(data => console.log(data));
+
+    let finalUnits = "UK";
+    if (startUnits === "UK"){
+        finalUnits = "US"
+    }
+    getStitchConversion(stitchName, startUnits).then(data => res.render('conversions', {output: data, startUnits: startUnits, stitchName: stitchName, finalUnits: finalUnits}));
+})
+app.get("/colorConverter", function(req, res){
+    res.render('colorConverter');
+})
+app.post("/color-partner", function(req, res){
+
+    let data = req.body;
+    let colorType = data.colorType;
+    let colorName = data.colorName;
+    async function getColorPartner(colorName, colorType) {
+        const url = "https://color-finder-cc7ba7b07ea1.herokuapp.com/getColor";
+        try {
+            const response = await fetch(url, {
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                body: JSON.stringify({"colorName": colorName, "colorType": colorType}),
+                method: 'POST',
+                mode: 'cors'
+            });
+        
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`)
+            }
+            const json = await response.json();
+            return json
+        } catch (error) {
+            console.error(error.message);
+        }   
+    }
+    let fixedColorType = "analog";
+    if (colorType === "complementary") {
+        fixedColorType = "complement"
+    }
+    let colorNameDict = {
+        "red": "Red",
+        "orange": "Orange",
+        "yellow": "Yellow",
+        "green": "Green",
+        "blue": "Blue",
+        "violet": "Violet"
+    }
+
+    let fixedColorName = colorNameDict[colorName]
+    getColorPartner(colorName, colorType).then(data => res.render('colorConverter', {output: data, color: fixedColorName, colorType: fixedColorType}));
 })
 
-async function getColorPartner(colorName, colorType) {
-    const url = "https://color-finder-cc7ba7b07ea1.herokuapp.com/getColor";
-    try {
-        const response = await fetch(url, {
-            headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: JSON.stringify({"colorName": colorName, "colorType": colorType}),
-            method: 'POST',
-            mode: 'cors'
-        });
-    
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`)
-        }
-        const json = await response.json();
-        return json
-    } catch (error) {
-        console.error(error.message);
-    }   
-}
-
-getColorPartner("yellow", "complementary").then(data => console.log(data));
 
 
 // Listener
