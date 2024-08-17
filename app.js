@@ -254,6 +254,28 @@ app.post("/stitchConversion", function(req, res){
     getStitchConversion("treble", "UK").then(data => console.log(data));
 })
 
+async function getColorPartner(colorName, colorType) {
+    const url = "https://color-finder-cc7ba7b07ea1.herokuapp.com/getColor";
+    try {
+        const response = await fetch(url, {
+            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+            body: JSON.stringify({"colorName": colorName, "colorType": colorType}),
+            method: 'POST',
+            mode: 'cors'
+        });
+    
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`)
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        console.error(error.message);
+    }   
+}
+
+getColorPartner("yellow", "complementary").then(data => console.log(data));
+
 
 // Listener
 app.listen(PORT, function(){
